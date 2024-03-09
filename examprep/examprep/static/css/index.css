@@ -1,0 +1,170 @@
+* {
+    font-family: 'Poppins', sans-serif !important;
+}
+.welcome-message {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 80px;
+    /* overflow: hidden; */
+}
+
+@keyframes slide {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+
+
+.infinite-text {
+    display: inline-block;
+    white-space: nowrap;
+    /* Prevent text from wrapping */
+    animation: slide 5s linear infinite;
+    /* Adjust animation duration as needed */
+}
+
+#typingText {
+    color: #fff;
+}
+
+#staticText {
+    color: #131010;
+    display: inline-block;
+    margin-top: 10px;
+    /* Add margin-top for space between lines */
+    font-size: 24px;
+    /* Adjust font size as needed */
+}
+
+/* Animation for fading in the welcome message */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar-nav .nav-link {
+    font-size: 15px;
+}
+
+body {
+    /* Remove display: flex; */
+    margin: 0;
+    padding: 0;
+    /* display: flex; */
+    /* Remove this line */
+    /* justify-content: center; */
+    /* Remove this line */
+    /* align-items: center; */
+    /* Remove this line */
+    min-height: 100vh;
+    background: #9053c7;
+    /* Fallback for older browsers */
+    /* background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -moz-linear-gradient(-135deg, #c850c0, #4158d0); */
+    background: repeating-linear-gradient(-135deg, #c850c0, #4158d0);
+    /* background: repeating-radial-gradient(-135deg, #c850c0, #4158d0); */
+    /* background-repeat: no-repeat; */
+    font-family: 'Poppins', sans-serif !important;
+    overflow: hidden;
+    text-align: center;
+}
+
+.cont1 {
+    display: flex;
+    /* Add display: flex; */
+    flex-direction: column;
+    /* Ensure items are stacked vertically */
+    align-items: center;
+    /* Center items horizontally */
+    width: 100%;
+    min-height: 100vh;
+    padding: 15px;
+    /* background: #9053c7;
+    background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: linear-gradient(-135deg, #c850c0, #4158d0); */
+    color: #fff;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.analytics-chart {
+    width: 100%;
+    height: 300px;
+}
+
+/* Additional styles for service section */
+.service-section {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.service-item:last-child {
+    margin-right: 0;
+}
+
+.service-item {
+    height: 30vh;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.service-item img {
+    max-width: 100px;
+    margin-right: 20px;
+}
+
+.service-item h3 {
+    font-size: 24px;
+}
+
+
+.service-item p {
+    font-size: 20px;
+    color: #ffffff;
+    /* Change text color to black */
+    text-align: center;
+    /* Increase the font size of the paragraph */
+}
+
+
+footer {
+    background-color: #333333;
+    color: #ffffff;
+    text-align: center;
+    padding: 12px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p:hover {
+    opacity: 1;
+    color: #ffffff;
+}

@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CrewExamEase</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{% static "images/icons/favicon.ico" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "fonts/font-awesome-4.7.0/css/font-awesome.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "vendor/animate/animate.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "vendor/css-hamburgers/hamburgers.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "vendor/select2/select2.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/util.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/upload.css" %}">
+    <style>
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">CrewExamEase</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                {% comment %} <a class="nav-item nav-link active" href="{% url "index" %}">Home</a> {% endcomment %}
+                <a class="nav-item nav-link" href="{% url "analytics" %}">Analytics</a>
+                <a class="nav-item nav-link" href="{% url "logout" %}">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Upload Your Question Paper</h1>
+        <div class="upload-section">
+            <form class="upload-form" action="#" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="questionPaper">Upload Question Paper (PDF/Image)</label>
+                        <input type="file" id="questionPaper" name="questionPaper">
+                    </div>
+                    <div class="form-group">
+                        <label for="answerKey">Upload Answer Key <br> (PDF/Image)</label>
+                        <input type="file" id="answerKey" name="answerKey">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="examDuration">Exam Duration</label>
+                    <input type="text" id="examDuration" name="examDuration" placeholder="Enter exam duration">
+                </div>
+                <div class="form-group">
+                    <label for="scheduleExam">Schedule Exam</label>
+                    <input type="datetime-local" id="scheduleExam" name="scheduleExam">
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{% static "vendor/jquery/jquery-3.2.1.min.js" %}"></script>
+    <script src="{% static "vendor/bootstrap/js/popper.js" %}"></script>
+    <script src="{% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "vendor/select2/select2.min.js" %}"></script>
+    <script src="{% static "vendor/tilt/tilt.jquery.min.js" %}"></script>
+    <script>
+        $(document).ready(function () {
+            var loggedIn = false; // Set this to true if user is logged in
+            var userName = ""; // Set the username here if user is logged in
+
+            var userNav = document.getElementById("userNav");
+            if (loggedIn) {
+                userNav.innerHTML = '<a class="nav-item nav-link disabled" href="#">' + userName + '</a>';
+            } else {
+                userNav.innerHTML = '<a class="nav-item nav-link" href=login.html>Login</a>';
+            }
+            $("#uploadLink").click(function (e) {
+                e.preventDefault();
+                $("#content").load("upload.html");
+            });
+        });
+    </script>
+    <footer>
+        &copy; 2024 CrewExamEase. All rights reserved.
+    </footer>
+</body>
+
+</html>

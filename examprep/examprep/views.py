@@ -28,9 +28,10 @@ def signup(request):
             data, count = supabase.table('user').insert({"username": email, "password": password}).execute()
             email, password='',''
         # this is where we verify email -> automatic
-            return render(request, "dashboard.html", {"username": email})
+            return render(request, "analytics.html", {"username": email})
         else: return render(request, "signup.html", {"userexists": 1})
     return render(request, "signup.html", {"userexists": 0})
+
 @csrf_protect
 def signin(request):
     # print("check 1")
@@ -48,7 +49,7 @@ def signin(request):
             return render(request, "signin.html", {"error": "Email or Password Error"})
         if email in username and username.index(email)==passwordarr.index(password):
             isAuth = True
-            return render(request, 'dashboard.html', {'isAuth' : isAuth})
+            return render(request, 'analytics.html', {'isAuth' : isAuth})
     isAuth = False
     return render(request, "signin.html")
 
@@ -60,6 +61,15 @@ def dashboard(request):
         response = supabase.auth.sign_up(email=email, password=password)
         print(response)
         isAuth = True
-        return render(request, 'dashboard.html', {'isAuth' : isAuth})
+        return render(request, 'analytics.html', {'isAuth' : isAuth})
     isAuth = False
-    return render(request, 'dashboard.html', {'isAuth': isAuth})
+    return render(request, 'analytics.html', {'isAuth': isAuth})
+
+def upload(request):
+    return render(request, "upload.html")
+
+def analytics(request):
+    return render(request, "analytics.html")
+
+def logout(request):
+    return render(request, 'index.html')

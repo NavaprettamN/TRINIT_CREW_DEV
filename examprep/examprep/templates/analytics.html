@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "css/util.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}">
-
+    <link rel="stylesheet" type="text/css" href="{% static "css/analytics.css" %}">
 </head>
 
 <body>
@@ -29,54 +28,63 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="index.html">Home<span class="sr-only">(current)</span></a>
-                {% comment %} <a class="nav-item nav-link" href="{% url "upload" %}">Upload</a> {% endcomment %}
-                {% comment %} <a class="nav-item nav-link" href="{% url "analytics" %}">Analytics</a>    {% endcomment %}
-                <a class="nav-item nav-link" href="{% url "signin" %}">Get Started</a>
-                
+                {% comment %} <a class="nav-item nav-link active" href="{% url "index" %}">Home <span class="sr-only">(current)</span></a> {% endcomment %}
+                <a class="nav-item nav-link" href="{% url "upload" %}">Upload</a>
+                <a class="nav-item nav-link" href="{% url "logout" %}">Logout</a>
             </div>
         </div>
     </nav>
 
-    <div class="welcome-message" id="welcomeMessage">
-        <span id="typingText"></span>
-    </div>
-
-    <div class="cont1">
-        <div class="container">
-            <div class="row service-section">
-                <div class="col-md-6" style="padding-bottom: 20px;">
-                    <div class="service-item">
-                        <img src="{% static "images/test-formatter.png" %}" alt="Test Formatter">
-                        <h3>Test Formatter</h3>
-                        <p>A site where students can upload PDFs of question papers and get online mock assessments.</p>
+    <div class="container">
+        <div class="heading">
+            <h1>Welcome to Your Dashboard</h1>
+        </div>
+        <div class="row1">
+            <div class="column1">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-family: Arial, sans-serif; font-size: 24px; 
+                        color: #333;">
+                            Number of Mock Tests Attended</h5>
+                        <p class="card-text"
+                            style="font-family: Arial, sans-serif; font-size: 36px; color: #007bff; margin-top: 10px;">3
+                        </p>
                     </div>
                 </div>
-                <div class="col-md-6" style="padding-bottom: 20px;">
-                    <div class="service-item">
-                        <img src="{% static "images/timer.png" %}" alt="Timer">
-                        <h3>Timer</h3>
-                        <p>Track your time while attempting the mock tests.</p>
+                <!-- Average Marks -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-family: Arial, sans-serif; font-size: 24px; color: #333;">
+                            Average Marks</h5>
+                        <p class="card-text"
+                            style="font-family: Arial, sans-serif; font-size: 36px; color: #007bff; margin-top: 10px;">
+                            75%</p>
                     </div>
                 </div>
-                <div class="col-md-6" style="padding-bottom: 20px;">
-                    <div class="service-item">
-                        <img src="{% static "images/schedule-test.png" %}" alt="Schedule Test">
-                        <h3>Schedule Test</h3>
-                        <p>Schedule your tests for future dates and times.</p>
-                    </div>
-                </div>
-                <div class="col-md-6" style="padding-bottom: 20px;">
-                    <div class="service-item">
-                        <img src="{% static "images/analyze-performance.png" %}" alt="Analyze Performance">
-                        <h3>Analyze Performance</h3>
-                        <p>Get detailed analysis of your mock test performance to identify strengths and weaknesses.</p>
+                <!-- Average Time Taken -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-family: Arial, sans-serif; font-size: 24px; color: #333;">
+                            Average Time Taken</h5>
+                        <p class="card-text"
+                            style="font-family: Arial, sans-serif; font-size: 36px; color: #007bff; margin-top: 10px;">1
+                            hour 30 minutes</p>
                     </div>
                 </div>
             </div>
-
+            <div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Graphical Analytics of Time Taken</h5>
+                        <div class="analytics-chart">
+                            <p>Graphical chart here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
     <script src="{% static "vendor/jquery/jquery-3.2.1.min.js" %}"></script>
     <script src="{% static "vendor/bootstrap/js/popper.js" %}"></script>
     <script src="{% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>
@@ -93,28 +101,8 @@
             } else {
                 userNav.innerHTML = '<a class="nav-item nav-link" href=login.html>Login</a>';
             }
-
-            // Add JavaScript for charting library here
         });
-
-        document.addEventListener("DOMContentLoaded", function () {
-            var text = "Welcome to CrewExamEase";
-            var typingSpeed = 100; // typing speed in milliseconds
-            var typingDelay = 1000; // delay before typing starts in milliseconds
-
-            var typingText = document.getElementById('typingText');
-            var index = 0;
-
-            // Typing effect function
-            function typeEffect() {
-                if (index < text.length) {
-                    typingText.innerHTML += text.charAt(index);
-                    index++;
-                    setTimeout(typeEffect, typingSpeed);
-                }
-            }
-            setTimeout(typeEffect, typingDelay);
-        });    </script>
+    </script>
 
     <footer>
         <p>&copy; 2024 CrewExamEase. All rights reserved.</p>
