@@ -33,7 +33,7 @@
 				</div>
 
 				<form class="login100-form validate-form" action={% url 'dashboard'%} method="POST">
-                    
+                    {% csrf_token %}
                     <span class="login100-form-title">
                         Create an Account
                     </span>
