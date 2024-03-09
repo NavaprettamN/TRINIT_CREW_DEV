@@ -32,7 +32,7 @@
                     <img src="{% static "images/img-01.png" %}" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" action={% url 'dashboard'%} method="POST">
+				<form class="login100-form validate-form" action={% url 'signup'%} method="POST">
                     {% csrf_token %}
                     <span class="login100-form-title">
                         Create an Account
@@ -45,7 +45,9 @@
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </span>
                     </div> {% endcomment %}
-                
+                    {% if userexists == 1 %}
+                    <p class="text-center" style="color: red;" >User Already Exists! Sign in</p>
+                    {% endif %}
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                         <input class="input100" type="email" name="email" placeholder="Email" required>
                         <span class="focus-input100"></span>
@@ -86,21 +88,21 @@
 
 	
 <!--===============================================================================================-->	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="{% static "vendor/jquery/jquery-3.2.1.min.js" %}"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="{% static "vendor/bootstrap/js/popper.js" %}"></script>
+	<script src="{% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>
 <!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
+	<script src="{% static "vendor/select2/select2.min.js" %}"></script>
 <!--===============================================================================================-->
-	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script src="{% static "vendor/tilt/tilt.jquery.min.js" %}"></script>
 	<script >
 		$('.js-tilt').tilt({
 			scale: 1.1
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+	<script src="{% static "js/main.js" %}"></script>
 
 </body>
 </html>
