@@ -3,6 +3,7 @@ from django.template import RequestContext
 from django.shortcuts import render
 from supabase_py import create_client
 from django.views.decorators.csrf import csrf_protect
+from io import BytesIO
 
 supabase_url="https://avkjleinmjywxmspfkck.supabase.co"
 supabase_api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF2a2psZWlubWp5d3htc3Bma2NrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk5NzIxMDEsImV4cCI6MjAyNTU0ODEwMX0.YiCobkolgIfyGGWSf37K_ECI40KtzwkzA4Kgt9GGACU"
@@ -75,3 +76,60 @@ def analytics(request):
 
 def logout(request):
     return render(request, 'index.html')
+
+def manual(request):
+    return render(request,  "manual.html")
+
+def taketest(request):
+    return render(request, "taketest.html") 
+
+def uploaddata(request):
+    if request.method == 'POST' and request.FILES:
+        try:
+            question_paper = request.FILES['questionPaper']
+            answer_key = request.FILES['answerKey']
+            exam_duration = request.POST['examDuration']
+            schedule_exam = request.POST['scheduleExam']
+
+            storage = supabase.storage
+
+            question_paper_buffer = BytesIO(question_paper.read())
+            question_paper_buffer.seek(0)  # Reset pointer for upload
+
+            answer_key_buffer = BytesIO(answer_key.read())
+            answer_key_buffer.seek(0)  # Reset pointer for upload
+
+            # Construct file names with timestamps (optional)
+            # timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+            # question_paper_name = f'{timestamp}_question_paper.{question_paper.name.split(".")[-1]}'
+            # answer_key_name = f'{timestamp}_answer_key.{answer_key.name.split(".")[-1]}'
+
+            # Upload files to Supabase storage (replace with your bucket name)
+            question_upload_response = supabase.storage.from_('ques').upload('question_paper.pdf', question_paper_buffer, question_paper.content_type)
+
+            answer_upload_response = supabase.storage.from_('ans').upload('answer_key.pdf', answer_key_buffer, answer_key.content_type)
+
+            # Handle upload errors
+            if question_upload_response.error or answer_upload_response.error:
+                error_message = question_upload_response.error or answer_upload_response.error
+                return render(request, "upload.html", {'error': error_message})
+
+            # Extract uploaded file URLs (optional)
+            # question_paper_url = question_upload_response.data['publicUrl']
+            # answer_key_url = answer_upload_response.data['publicUrl']
+
+            # Save metadata to database (consider using a Django model)
+            # exam_data = ExamData.objects.create(
+            #     question_paper=question_paper_url,
+            #     answer_key=answer_key_url,
+            #     exam_duration=exam_duration,
+            #     schedule_exam=schedule_exam
+            # )
+
+            # Success message or redirect (optional)
+            return render(request, "upload.html", {'success': 'Files uploaded successfully!'})
+
+        except Exception as e:
+            return render(request, "upload.html", {'error': f'An error occurred: {str(e)}'})
+
+    return render(request, "upload.html")

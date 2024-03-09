@@ -12,5 +12,8 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('upload/', views.upload, name='upload'),
     path('analytics/', views.analytics, name='analytics'),
-    path('', views.analytics, name='logout'),
+    path('', views.logout, name='logout'),
+    path('uploaddata', views.uploaddata, name='uploaddata'),
+    path('manual', views.manual, name='manual'),
+    path('taketest', views.taketest, name='taketest'),
 ]

@@ -30,8 +30,9 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                {% comment %} <a class="nav-item nav-link active" href="{% url "index" %}">Home</a> {% endcomment %}
                 <a class="nav-item nav-link" href="{% url "analytics" %}">Analytics</a>
+                <a class="nav-item nav-link" href="{% url "manual" %}">Manual Test</a>
+                <a class="nav-item nav-link" href="{% url "taketest" %}">Take Test</a>
                 <a class="nav-item nav-link" href="{% url "logout" %}">Logout</a>
             </div>
         </div>
@@ -40,7 +41,14 @@
     <div class="container">
         <h1>Upload Your Question Paper</h1>
         <div class="upload-section">
-            <form class="upload-form" action="#" method="post" enctype="multipart/form-data">
+            {% if success %}
+            <p>{{success}}</p>
+            {% endif %}
+            {% if error %}
+            <p>{{error}}</p>
+            {% endif %}
+            <form class="upload-form" action="{% url "uploaddata" %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="row">
                     <div class="form-group">
                         <label for="questionPaper">Upload Question Paper (PDF/Image)</label>
