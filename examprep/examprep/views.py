@@ -81,7 +81,16 @@ def manual(request):
     return render(request,  "manual.html")
 
 def taketest(request):
-    return render(request, "taketest.html") 
+    resp = supabase.table("manual").select("*").execute()
+    ques, a, b, c, d, correct=[],[],[],[],[],[]
+    for i in resp['data']:
+        ques.append(i['question'])
+        a.append(i['a'])
+        b.append(i['b'])
+        c.append(i['c'])
+        d.append(i['d'])
+        correct.append(i['correct'])
+    return render(request, "taketest.html", {"ques": ques, "a": a, "b": b, "c": c, "d": d, "correct": correct}) 
 
 def uploadmanual(request):
     if request.POST != {}:

@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Test - CrewExamEase</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static "css/taketest.css" %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">CrewExamEase</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="{% url "analytics" %}">Analytics</a>
+                <a class="nav-item nav-link" href="{% url "upload" %}">Upload</a>
+                <a class="nav-item nav-link" href="{% url "logout" %}">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="test-header">
+            <h1>JEE 2019 Session 1</h1>
+            <div class="timer-image">
+                <img src="{% static "images/testtimer.png" %}" alt="Test Timer">
+                <div id="timer" class="timer">2:30:00</div>
+            </div>
+        </div>
+        <button type="submit" class="submit-button">Submit</button>
+        
+        <div class="section-buttons">
+            <button class="btn btn-primary">Section 1</button>
+            <button class="btn btn-primary">Section 2</button>
+            <button class="btn btn-primary">Section 3</button>
+        </div>
+        <div class="question-section">
+            <div class="question">
+                <h2>Question 1</h2>
+                <p>A force acts on a 2 kg object so that its position is given as a function of time as x = 3t^2 + 5. What is the work done by this force in the first 5 seconds?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1_option" value="A"> (A) 850 J</label><br>
+                    <label><input type="radio" name="q1_option" value="B"> (B) 950 J</label><br>
+                    <label><input type="radio" name="q1_option" value="C"> (C) 875 J</label><br>
+                    <label><input type="radio" name="q1_option" value="D"> (D) 900 J</label><br>
+                </div>
+            </div>
+
+            <div class="question">
+                <h2>Question 2</h2>
+                <p>At a given instant, say t = 0, two radioactive substances A and B have equal activities. The ratio B/A of their activities after time t itself decays with time t as e^(-3t). If the half-life of A is ln(2)/λ, the half-life of B is:</p>
+                <div class="options">
+                    <label><input type="radio" name="q2_option" value="A"> (A) 4λln(2)</label><br>
+                    <label><input type="radio" name="q2_option" value="B"> (B) λln(2)/4</label><br>
+                    <label><input type="radio" name="q2_option" value="C"> (C) λln(2)/4</label><br>
+                    <label><input type="radio" name="q2_option" value="D"> (D) 2λln(2)</label><br>
+                </div>
+            </div>
+
+            <div class="question">
+                <h2>Question 3</h2>
+                <p>A power transmission line feeds input power at 2300 V to a step-down transformer with its primary windings having 4000 turns. The output power is delivered at 230 V by the transformer. If the current in the primary of the transformer is 5A and its efficiency is 90%, the output current would be:</p>
+                <div class="options">
+                    <label><input type="radio" name="q3_option" value="A"> (A) 50 A</label><br>
+                    <label><input type="radio" name="q3_option" value="B"> (B) 45 A</label><br>
+                    <label><input type="radio" name="q3_option" value="C"> (C) 35 A</label><br>
+                    <label><input type="radio" name="q3_option" value="D"> (D) 25 A</label><br>
+                </div>
+            </div>
+
+            <!-- Add more questions here -->
+
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 CrewExamEase. All rights reserved.
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Countdown timer function
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = "Time Left: " + minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        // Run the timer when the page loads
+        window.onload = function () {
+            var duration = 150 * 60; // 2 hours 30 minutes in seconds
+            var display = document.querySelector('#timer');
+            startTimer(duration, display);
+        };
+    </script>
+    <script>
+        let ques = {{ ques|safe }}
+        let a = {{ a|safe }}
+        let b = {{ b|safe }}
+        let c = {{ c|safe }}
+        let d = {{ d|safe }}
+        let correct = {{ correct|safe }}
+        int i=0;
+        for(i=0; i < ques.length(); i++) {
+            let questiondiv = document.createElement("div");
+            questiondiv.classList += "question";
+            let h2 = document.createElement("h2");
+            h2.innerHTML="Question "+(i+1);
+            questiondiv.appendChild(h2);
+            let p = document.createElement("p");
+            p.innerHTML=ques[i];
+            questiondiv.appendChild(p);
+            let optiondiv = document.createElement("div");\
+            optiondiv.classList += "options";
+            let inputa = document.createElement("input");
+            inputa.setAttribute("type", "radio");
+            inputa.name = "a";
+            inputa.value = "a";
+            inputa.innerHTML = a[i];
+            optiondiv.append(inputa);
+            let inputb = document.createElement("input");
+            inputb.setAttribute("type", "radio");
+            inputb.name = "b";
+            inputb.value = "b";
+            inputb.innerHTML = b[i];
+            optiondiv.append(inputb);
+            let inputc = document.createElement("input");
+            inputc.setAttribute("type", "radio");
+            inputc.name = "c";
+            inputc.value = "c";
+            inputc.innerHTML = c[i];
+            optiondiv.append(inputc);
+            let inputd = document.createElement("input");
+            inputd.setAttribute("type", "radio");
+            inputd.name = "d";
+            inputd.value = "d";
+            inputd.innerHTML = d[i];
+            optiondiv.append(inputd);
+            questiondiv.appendChild(optiondiv)
+            console.log(questiondiv)
+            document.querySelector("question-section").append(questiondiv);
+        }
+    </script>
+
+    </body>
+
+</html>
