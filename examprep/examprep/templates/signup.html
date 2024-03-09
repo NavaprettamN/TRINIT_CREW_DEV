@@ -28,8 +28,8 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="images/img-01.png" alt="IMG">
-                    <h1>CrewExamEase - Registration</h1>
+                    <h1 class="text-center">Registration</h1>
+                    <img src="{% static "images/img-01.png" %}" alt="IMG">
 				</div>
 
 				<form class="login100-form validate-form" action={% url 'dashboard'%} method="POST">
@@ -55,7 +55,7 @@
                     </div>
                 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="text" name="password" placeholder="Password" required>
+                        <input class="input100" type="password" name="password" placeholder="Password" required>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>
