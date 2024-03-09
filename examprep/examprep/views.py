@@ -83,6 +83,18 @@ def manual(request):
 def taketest(request):
     return render(request, "taketest.html") 
 
+def uploadmanual(request):
+    if request.POST != {}:
+        question = request.POST["question"]
+        option1 = request.POST["option1"]
+        option2 = request.POST["option2"]
+        option3 = request.POST["option3"]
+        option4 = request.POST["option4"]
+        correct = request.POST["correctOption"]
+        resp = supabase.table("manual").insert({"question": question, "a": option1, "b": option2, "c": option3, "d": option4, "correct": correct, "testid": 1}).execute()
+        print(resp)
+        return render(request, "manual.html") 
+
 def uploaddata(request):
     if request.method == 'POST' and request.FILES:
         try:
@@ -105,9 +117,9 @@ def uploaddata(request):
             # answer_key_name = f'{timestamp}_answer_key.{answer_key.name.split(".")[-1]}'
 
             # Upload files to Supabase storage (replace with your bucket name)
-            question_upload_response = supabase.storage.from_('ques').upload('question_paper.pdf', question_paper_buffer, question_paper.content_type)
+            question_upload_response = supabase.storage.from_('ques').upload('question_paper.pdf', question_paper_buffer, question_paper.content_type).execute()
 
-            answer_upload_response = supabase.storage.from_('ans').upload('answer_key.pdf', answer_key_buffer, answer_key.content_type)
+            answer_upload_response = supabase.storage.from_('ans').upload('answer_key.pdf', answer_key_buffer, answer_key.content_type).execute()
 
             # Handle upload errors
             if question_upload_response.error or answer_upload_response.error:

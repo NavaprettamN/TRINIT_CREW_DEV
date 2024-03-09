@@ -15,5 +15,6 @@ urlpatterns = [
     path('', views.logout, name='logout'),
     path('uploaddata', views.uploaddata, name='uploaddata'),
     path('manual', views.manual, name='manual'),
+    path('uploadmanual', views.uploadmanual, name='uploadmanual'),
     path('taketest', views.taketest, name='taketest'),
 ]
