@@ -33,6 +33,7 @@ def signin(request):
     isAuth = False
     return render(request, "signin.html")
 
+
 def dashboard(request):
     if request.POST != {}:
         email = request.POST['email']
