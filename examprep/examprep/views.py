@@ -8,13 +8,16 @@ supabase_api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsI
 supabase = create_client(supabase_url, supabase_api_key)
 
 def index(request):
+    
+    return render(request, "index.html")
+
+def signup(request):
     email = request.GET['email']
     password = request.GET['password']
     response = supabase.auth.sign_up(email=email, password=password)
     print(response)
-    return render(request, "index.html", {'auth': 0})
 
-def signup(request):
+    # this is where we verify email -> automatic
     return render(request, "signup.html")
 
 def signin(request):
