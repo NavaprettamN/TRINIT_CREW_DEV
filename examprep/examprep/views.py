@@ -49,7 +49,7 @@ def signin(request):
             return render(request, "signin.html", {"error": "Email or Password Error"})
         if email in username and username.index(email)==passwordarr.index(password):
             isAuth = True
-            return render(request, 'analytics.html', {'isAuth' : isAuth})
+            return render(request, 'analytics.html', {'isAuth' : isAuth, 'username': email})
     isAuth = False
     return render(request, "signin.html")
 
@@ -66,9 +66,11 @@ def dashboard(request):
     return render(request, 'analytics.html', {'isAuth': isAuth})
 
 def upload(request):
+    
     return render(request, "upload.html")
 
 def analytics(request):
+
     return render(request, "analytics.html")
 
 def logout(request):
