@@ -41,7 +41,7 @@
             <button class="btn btn-primary">Section 2</button>
             <button class="btn btn-primary">Section 3</button>
         </div>
-        <div class="question-section">
+        <div class="question-section" id="question-section">
             <div class="question">
                 <h2>Question 1</h2>
                 <p>A force acts on a 2 kg object so that its position is given as a function of time as x = 3t^2 + 5. What is the work done by this force in the first 5 seconds?</p>
@@ -120,8 +120,8 @@
         let c = {{ c|safe }}
         let d = {{ d|safe }}
         let correct = {{ correct|safe }}
-        int i=0;
-        for(i=0; i < ques.length(); i++) {
+        var i=0;
+        for(i=0; i < ques.length; i++) {
             let questiondiv = document.createElement("div");
             questiondiv.classList += "question";
             let h2 = document.createElement("h2");
@@ -130,35 +130,39 @@
             let p = document.createElement("p");
             p.innerHTML=ques[i];
             questiondiv.appendChild(p);
-            let optiondiv = document.createElement("div");\
+            let optiondiv = document.createElement("div");
             optiondiv.classList += "options";
+            let br = document.createElement("br");
             let inputa = document.createElement("input");
             inputa.setAttribute("type", "radio");
             inputa.name = "a";
             inputa.value = "a";
             inputa.innerHTML = a[i];
             optiondiv.append(inputa);
+            optiondiv.append(br);
             let inputb = document.createElement("input");
             inputb.setAttribute("type", "radio");
             inputb.name = "b";
             inputb.value = "b";
             inputb.innerHTML = b[i];
             optiondiv.append(inputb);
+            optiondiv.append(br);
             let inputc = document.createElement("input");
             inputc.setAttribute("type", "radio");
             inputc.name = "c";
             inputc.value = "c";
             inputc.innerHTML = c[i];
             optiondiv.append(inputc);
+            optiondiv.append(br);
             let inputd = document.createElement("input");
             inputd.setAttribute("type", "radio");
             inputd.name = "d";
             inputd.value = "d";
             inputd.innerHTML = d[i];
             optiondiv.append(inputd);
+            optiondiv.append(br);
             questiondiv.appendChild(optiondiv)
-            console.log(questiondiv)
-            document.querySelector("question-section").append(questiondiv);
+            document.getElementById("question-section").appendChild(questiondiv);
         }
     </script>
 
