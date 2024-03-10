@@ -27,7 +27,7 @@ CREWExamEase is a web application designed to help students prepare for exams by
 ## Authors
 
 - NavaprettamN - [@NavaprettamN](https://github.com/NavaprettamN)
-- PranavV - [@PranavV](https://github.com/PranavV)
+- PranavV - [@PranavV](https://github.com/jainvpranav)
 - PoojaHp - [@PoojaHp](https://github.com/PoojaHp)
 - AbhishekBelagavi - [@AbhishekBelagavi](https://github.com/AbhishekBelagavi)
 
