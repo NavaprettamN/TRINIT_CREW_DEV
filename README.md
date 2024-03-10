@@ -1,7 +1,7 @@
 # TRINIT_CREW_DEV
 Project for the hackathon of NIT &lt;TRI-NIT>
 
-# video link : 
+# video link : https://drive.google.com/file/d/1lnaa9fDPRBS3zaJyzH3Src9KghgDter5/view?usp=sharing
 
 # CREWExamEase
 
